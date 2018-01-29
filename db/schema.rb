@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20180129061048) do
   create_table "jobs", force: :cascade do |t|
     t.string "title"
     t.string "description"
-    t.string "type"
+    t.string "job_type"
     t.string "status"
     t.string "category"
     t.bigint "company_id"
