@@ -1,0 +1,16 @@
+<%= form_for(:job) do |f| %>
+
+	<%= f.label :Title %>
+	<%= f.text_field :title %>
+
+	<%= f.label :Description %>
+	<%= f.text_field :description %>
+
+	<%= f.label :type, 'Job Type' %>
+	<%= f.text_field :type %>
+
+	<%= f.label :Category %>
+	<%= f.text_field :category %>
+
+	<%= f.submit 'Submit post' %>
+<% end %>

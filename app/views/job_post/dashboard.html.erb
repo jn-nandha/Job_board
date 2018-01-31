@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DashBorad</title>
+	<style type="text/css">
+		.post
+		{
+			float: left;
+			border: 1px solid #0000ff;
+			margin-bottom: 10px;
+			margin-left: 20px;
+			margin-right: 20px;
+		}
+		.post:hover
+		{
+			background-color: #00ff00;
+		}
+	</style>
+</head>
+<body>
+	<h1>Dash Board</h1>
+	<% @post.each do |pt| %>
+	<div class='post'>
+		<h3><%= pt.title %></h3>
+		<center><%= pt.description %></center>
+	</div>
+	<% end %>
+</body>
+</html>
