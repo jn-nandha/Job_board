@@ -1,0 +1,22 @@
+<%= form_for(:job) do |f| %>
+
+<div class="field">
+	<%= f.label 'Job Type' %>
+	<%= f.select(:job_type, ['we have','we want']) %><br />
+</div>
+<div class="field">
+	<%= f.label :Category %>
+	<%= f.text_field :category, autocomplete: "off" %>
+</div>
+<div class="field">
+	<%= f.label :Title %><br />
+	<%= f.text_field :title, autocomplete: "off" %>
+</div>
+<div class="field">
+	<%= f.label :Description %><br />
+	<%= f.text_area :description, autocomplete: "off" %>
+</div>
+
+<%= f.submit 'Post Job' %>
+
+<% end %>
