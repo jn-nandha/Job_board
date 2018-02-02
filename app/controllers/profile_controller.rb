@@ -1,8 +1,6 @@
 class ProfileController < ApplicationController
 	def latest_job
-		@post = Job.last(3)
-		@onlyhave = onlytype('we have')
-		@onlywant = onlytype('we want')
+		@jobs = Job.where(company_id: current_company.id).reverse
 	end
 
 	def onlytype(type)

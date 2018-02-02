@@ -15,6 +15,16 @@
 	<% if alert %>
   		<p class="alert alert-danger"><%= alert %></p>
 	<% end %>
+  <% if company_signed_in? %>
+  <table style="width: 100%">
+    <tr>
+      <td><%= link_to "Dashboard", root_path %></td>
+      <td><%= link_to current_company.email, profile_path %></td>
+      <td><%= link_to "Add Post", profile_new_path %></td>
+      <td><%= link_to "Logout", destroy_company_session_path, method: :delete %></td>
+    </tr>
+  </table>
+  <% end %>
     <%= yield %>
   </body>
 </html>

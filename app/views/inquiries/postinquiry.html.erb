@@ -1,0 +1,22 @@
+
+<div class="want">
+	<h1>New Inquiry</h1>
+	<%= form_for(:inquiry) do |form|%>
+	<%= form.label(:message)%>
+	<%= form.text_area(:message)%>
+	<%= form.hidden_field :job_no, value: params[:job_id] %>
+	<%= form.submit%>
+	<% end %>
+</div>
+<div class="have">
+	<h1>Your Inquiries</h1>
+	<p>On this particular post</p>
+	<table>
+		<% @per_inq.each do |i| %>
+		<tr>
+			<td><%= i.created_at %></td>
+			<td><%= i.message %></td>
+		</tr>
+		<% end %>
+	</table>
+</div>

@@ -1,54 +1,18 @@
-<div style="border: 1px solid black;">
-	<%= current_company.id %>	
+
+<div class="main">
+<h1>Current user Jobs</h1>
+<div class="all">		
+	<table>
+		<% @jobs.each do |j| %>
+			<tr>
+				<td><%= j.updated_at %></td>
+				<td><%= j.job_type %></td>
+				<td><%= j.title %></td>
+				<td><%= j.description %></td>
+				<td><%= j.status %></td>
+				<td><%= link_to "view", inquiry_path({job_id: j.id}) %></td>
+			</tr>
+		<% end %>
+	</table>
 </div>
-
-<h1>Latest 3 Jobs</h1>
-<% @post.each do |jp| %>
-	<div style="background-color: pink; margin: 10px;">
-		<table style="width: 100%">
-			<tr>
-				<td style="color: blue;width: 70%"><h2><%= jp.title %></h2></td>
-				<td style="color: red;width: 30%"><%= jp.job_type %></td>
-			</tr>
-			<tr>
-				<td>
-					<p><%= jp.description %></p>
-				</td>
-			</tr>
-		</table>
-	</div>
-<% end %>
-
-<h1>only we have</h1>
-<% @onlyhave.each do |jp| %>
-	<div style="background-color: pink; margin: 10px;">
-		<table style="width: 100%">
-			<tr>
-				<td style="color: blue;width: 70%"><h2><%= jp.title %></h2></td>
-				<td style="color: red;width: 30%"><%= jp.job_type %></td>
-			</tr>
-			<tr>
-				<td>
-					<p><%= jp.description %></p>
-				</td>
-			</tr>
-		</table>
-	</div>
-<% end %>
-
-<h1>only we want</h1>
-<% @onlywant.each do |jp| %>
-	<div style="background-color: pink; margin: 10px;">
-		<table style="width: 100%">
-			<tr>
-				<td style="color: blue;width: 70%"><h2><%= jp.title %></h2></td>
-				<td style="color: red;width: 30%"><%= jp.job_type %></td>
-			</tr>
-			<tr>
-				<td>
-					<p><%= jp.description %></p>
-				</td>
-			</tr>
-		</table>
-	</div>
-<% end %>
+</div>
