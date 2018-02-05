@@ -15,36 +15,4 @@ ActiveRecord::Schema.define(version: 20180129061048) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "companies", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password"
-    t.string "website"
-    t.string "city"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "inquiries", force: :cascade do |t|
-    t.text "message"
-    t.bigint "job_id"
-    t.bigint "company_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_inquiries_on_company_id"
-    t.index ["job_id"], name: "index_inquiries_on_job_id"
-  end
-
-  create_table "jobs", force: :cascade do |t|
-    t.string "title"
-    t.string "description"
-    t.string "job_type"
-    t.string "status"
-    t.string "category"
-    t.bigint "company_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_jobs_on_company_id"
-  end
-
 end
