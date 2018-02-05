@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get 'profile', to: 'profile#latest_job'
     get 'profile/new', to: 'profile#newjob'
     post 'profile/new', to: 'profile#savejob'
+    get 'stat_chg', to: 'profile#stat_chg'
 
     get 'inquiry', to: 'inquiries#showinq' 
     get 'inquiry/new', to: 'inquiries#postinquiry'

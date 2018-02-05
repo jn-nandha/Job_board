@@ -3,23 +3,28 @@ class ProfileController < ApplicationController
 		@jobs = Job.where(company_id: current_company.id).reverse
 	end
 
-	def onlytype(type)
-		Job.where(job_type: "#{type}")
-	end
-
 	def newjob
 		@post = Job.new
 	end
 
 	def savejob
 		@post = Job.new(post_params)
-		@post.status = 'start'
+		@post.status = 'open'
 		@post.company_id = current_company.id
 		if @post.save!
 			redirect_to profile_path
 		end
 	end
 
+	def stat_chg
+		@jb = Job.find(1)
+		if @jb.status == 'open'
+			@jb.status = 'close'
+		else
+			@jb.status = 'open'
+		end
+		@jb.save
+	end
 
 	private
 	def post_params

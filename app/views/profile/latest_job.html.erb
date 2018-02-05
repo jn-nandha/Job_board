@@ -11,6 +11,11 @@
 				<td><%= j.description %></td>
 				<td><%= j.status %></td>
 				<td><%= link_to "view", inquiry_path({job_id: j.id}) %></td>
+				<% if j.status == 'open' %>
+					<td><%= link_to "close", stat_chg_path({job_id: j.id}) %></td>
+				<% elsif j.status == 'close' %>
+					<td><%= link_to "open", stat_chg_path({job_id: j.id}) %></td>
+				<% end %>
 			</tr>
 		<% end %>
 	</table>

@@ -1,8 +1,10 @@
 <div class="main">
 	<div>
 		<%= form_for(:job) do |f| %>
-		<%= f.label 'Filter' %>
+		<%= f.label 'Filter: Job Type' %>
 		<%= f.select(:job_type,['all','we have','we want']) %>
+		<%= f.label 'City' %>
+		<%= f. text_field :city %>
 		<%= f.submit 'Search' %>
 		<% end %>
 	</div>
@@ -10,16 +12,21 @@
 	<h1>Latest Job</h1>
 	<div class="all">
 		<table>
+			<% if @jobs.count > 0 %>
 			<% @jobs.each do |j| %>
 			<tr>
 				<td><%= j.updated_at %></td>
 				<td><%= j.job_type %></td>
 				<td><%= j.title %></td>
 				<td><%= j.description %></td>
+				<td><%= j.company.city %></td>
 				<% if j.company_id != current_company.id %>
 				<td><%= link_to "inquiry", inquiry_new_path({job_id: j.id}) %></td>
 				<% end %>
 			</tr>
+			<% end %>
+			<% else %>
+			<h3>No Jobs Found</h3>
 			<% end %>
 		</table>
 	</div>
