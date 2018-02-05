@@ -1,4 +1,7 @@
 <div class="main">
+	<% if current_company == nil %>
+	<div style="float: right;"><td><%= link_to "Login",  new_company_session_path %></td></div>
+	<% end %>
 	<div>
 		<%= form_for(:job) do |f| %>
 		<%= f.label 'Filter: Job Type' %>
@@ -12,16 +15,28 @@
 	<h1>Latest Job</h1>
 	<div class="all">
 		<table>
+			<tr style="color: orange; font-weight: bolder; font-size: 20px">
+				<td>Title</td>
+				<td>Type</td>
+				<td>Description</td>
+				<td>City</td>
+				<td>Update Time</td>
+				<td>Inquiry</td>
+			</tr>
 			<% if @jobs.count > 0 %>
 			<% @jobs.each do |j| %>
 			<tr>
-				<td><%= j.updated_at %></td>
-				<td><%= j.job_type %></td>
 				<td><%= j.title %></td>
+				<td><%= j.job_type %></td>
 				<td><%= j.description %></td>
 				<td><%= j.company.city %></td>
-				<% if j.company_id != current_company.id %>
+				<td><%= j.updated_at %></td>
+				<% if current_company == nil %>
 				<td><%= link_to "inquiry", inquiry_new_path({job_id: j.id}) %></td>
+				<% elsif j.company_id != current_company.id%>
+				<td><%= link_to "inquiry", inquiry_new_path({job_id: j.id}) %></td>
+				<% else %>
+				<td>------</td>
 				<% end %>
 			</tr>
 			<% end %>

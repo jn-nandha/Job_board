@@ -1,4 +1,8 @@
-
+<div class="main">
+<div>
+	<h2>Job Title: <%= @jb[0][:title] %></h2>
+	<h3>Job Description: <%= @jb[0][:description] %></h3>
+</div>
 <div class="want">
 	<h1>New Inquiry</h1>
 	<%= form_for(:inquiry) do |form|%>
@@ -19,4 +23,5 @@
 		</tr>
 		<% end %>
 	</table>
+</div>
 </div>

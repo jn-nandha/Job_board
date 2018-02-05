@@ -1,23 +1,33 @@
 
 <div class="main">
-<h1>Current user Jobs</h1>
-<div class="all">		
-	<table>
-		<% @jobs.each do |j| %>
+	<h1>Current user Jobs</h1>
+	<div class="all">		
+		<table>
+			<tr style="color: orange;font-weight: bolder; font-size: 20px">
+				<td>Title</td>
+				<td>Type</td>
+				<td>Description</td>
+				<td>Status</td>
+				<td>Update At</td>
+				<td>View Inq.</td>
+				<td>Change State</td>
+			</tr>
+
+			<% @jobs.each do |j| %>
 			<tr>
-				<td><%= j.updated_at %></td>
-				<td><%= j.job_type %></td>
 				<td><%= j.title %></td>
+				<td><%= j.job_type %></td>
 				<td><%= j.description %></td>
 				<td><%= j.status %></td>
+				<td><%= j.updated_at %></td>
 				<td><%= link_to "view", inquiry_path({job_id: j.id}) %></td>
 				<% if j.status == 'open' %>
-					<td><%= link_to "close", stat_chg_path({job_id: j.id}) %></td>
+				<td><%= link_to "close", stat_chg_path({job_id: j.id}) %></td>
 				<% elsif j.status == 'close' %>
-					<td><%= link_to "open", stat_chg_path({job_id: j.id}) %></td>
+				<td><%= link_to "open", stat_chg_path({job_id: j.id}) %></td>
 				<% end %>
 			</tr>
-		<% end %>
-	</table>
-</div>
+			<% end %>
+		</table>
+	</div>
 </div>

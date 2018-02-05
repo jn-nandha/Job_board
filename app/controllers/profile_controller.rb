@@ -1,4 +1,5 @@
 class ProfileController < ApplicationController
+	before_action :authenticate_company!
 	def latest_job
 		@jobs = Job.where(company_id: current_company.id).reverse
 	end
@@ -17,7 +18,7 @@ class ProfileController < ApplicationController
 	end
 
 	def stat_chg
-		@jb = Job.find(1)
+		@jb = Job.find(params[:job_id])
 		if @jb.status == 'open'
 			@jb.status = 'close'
 		else
