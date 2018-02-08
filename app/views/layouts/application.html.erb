@@ -1,36 +1,23 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>JobBoard</title>
-    <%= csrf_meta_tags %>
+<head>
+	<title>JobBoard</title>
+	<%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-  	<% if notice %>
-  		<p class="alert alert-success"><%= notice %></p>
-	<% end %>
-	<% if alert %>
-  		<p class="alert alert-danger"><%= alert %></p>
-	<% end %>
-  <% if company_signed_in? %>
-  <table style="width: 100%">
-    <% if current_company.id != nil%>
-    <tr>
-      <td><%= link_to "Dashboard", root_path %></td>
-      <td><%= link_to current_company.email, profile_path %></td>
-      <td><%= link_to "Add Post", profile_new_path %></td>
-      <td><%= link_to "Logout", destroy_company_session_path, method: :get %></td>
-    </tr>
-    <% else %>
-    <tr>
-      <td><%= link_to "Dashboard", root_path %></td>
-    </tr>
-    <% end %>
-  </table>
-  <% end %>
-    <%= yield %>
-  </body>
+<body>
+	<div class="container">	
+		<% if notice %>
+		<p class="alert alert-success"><%= notice %></p>
+		<% end %>
+		<% if alert %>
+		<p class="alert alert-danger"><%= alert %></p>
+		<% end %>
+		<%= render 'layouts/header' %>
+		<%= yield %>
+	</div>
+</body>
 </html>

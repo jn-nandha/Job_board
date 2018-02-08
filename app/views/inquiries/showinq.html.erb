@@ -8,7 +8,7 @@
 	<table>
 		<% @iq.each do |i| %>
 		<tr>
-			<td><%= i.created_at %></td>
+			<td><%= i.created_at.strftime("%d %b,%Y %H:%M") %></td>
 			<td><%= i.message %></td>
 			<td><%= i.company.email %></td>
 		</tr>

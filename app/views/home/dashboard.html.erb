@@ -1,48 +1,18 @@
-<div class="main">
-	<% if current_company == nil %>
-	<div style="float: right;"><td><%= link_to "Login",  new_company_session_path %></td></div>
-	<% end %>
-	<div>
-		<%= form_for(:job) do |f| %>
-		<%= f.label 'Filter: Job Type' %>
-		<%= f.select(:job_type,['all','we have','we want']) %>
-		<%= f.label 'City' %>
-		<%= f. text_field :city %>
-		<%= f.submit 'Search' %>
-		<% end %>
-	</div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBT-w_gjvyhb7xwDypt6_UMmSgH1WHLmJY&libraries=places&callback=initAuto_job" async defer></script>
 
-	<h1>Latest Job</h1>
-	<div class="all">
-		<table>
-			<tr style="color: orange; font-weight: bolder; font-size: 20px">
-				<td>Title</td>
-				<td>Type</td>
-				<td>Description</td>
-				<td>City</td>
-				<td>Update Time</td>
-				<td>Inquiry</td>
-			</tr>
-			<% if @jobs.count > 0 %>
-			<% @jobs.each do |j| %>
-			<tr>
-				<td><%= j.title %></td>
-				<td><%= j.job_type %></td>
-				<td><%= j.description %></td>
-				<td><%= j.company.city %></td>
-				<td><%= j.updated_at %></td>
-				<% if current_company == nil %>
-				<td><%= link_to "inquiry", inquiry_new_path({job_id: j.id}) %></td>
-				<% elsif j.company_id != current_company.id%>
-				<td><%= link_to "inquiry", inquiry_new_path({job_id: j.id}) %></td>
-				<% else %>
-				<td>------</td>
-				<% end %>
-			</tr>
-			<% end %>
-			<% else %>
-			<h3>No Jobs Found</h3>
-			<% end %>
-		</table>
+<div class="row">
+	<div class="col-md-2 side-left">
+		<div class="row">
+			<%= form_for :job, remote: true do |f| %>
+			<%= f.label 'Filter: Job Type' %>
+			<%= f.select(:job_type,['all','we have','we want']) %>
+			<%= f.label 'City' %>
+			<%= f. text_field :city %>
+			<%= f.submit 'Search' %>
+			<% end %>	
+		</div>	
+	</div>
+	<div class="col-md-10 side-right">
+		<%= render partial: 'home/list_jobs', locals: { jobs: @jobs} %>	
 	</div>
 </div>

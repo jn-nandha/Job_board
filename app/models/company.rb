@@ -6,4 +6,7 @@ class Company < ApplicationRecord
 
    has_many :inquiries
    has_many :jobs, dependent: :destroy
+
+    geocoded_by :city 
+   after_validation :geocode , :if => :city_changed? 
 end

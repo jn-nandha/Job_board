@@ -1,33 +1,80 @@
+<div class="container">
 
-<div class="main">
-	<h1>Current user Jobs</h1>
-	<div class="all">		
-		<table>
-			<tr style="color: orange;font-weight: bolder; font-size: 20px">
-				<td>Title</td>
-				<td>Type</td>
-				<td>Description</td>
-				<td>Status</td>
-				<td>Update At</td>
-				<td>View Inq.</td>
-				<td>Change State</td>
-			</tr>
-
-			<% @jobs.each do |j| %>
-			<tr>
-				<td><%= j.title %></td>
-				<td><%= j.job_type %></td>
-				<td><%= j.description %></td>
-				<td><%= j.status %></td>
-				<td><%= j.updated_at %></td>
-				<td><%= link_to "view", inquiry_path({job_id: j.id}) %></td>
-				<% if j.status == 'open' %>
-				<td><%= link_to "close", stat_chg_path({job_id: j.id}) %></td>
-				<% elsif j.status == 'close' %>
-				<td><%= link_to "open", stat_chg_path({job_id: j.id}) %></td>
+	<div class="row">
+		<h1>Current user Jobs</h1>
+		<div class="col-md-12">
+			<% if @jobs.length != 0 %>	
+			<table class="table">
+				<tr class="head">
+					<td>Title</td>
+					<td>Type</td>
+					<td>Description</td>
+					<td>Status</td>
+					<td>Update At</td>
+					<td>View Inq.</td>
+					<td>Change State</td>
+				</tr>
+				<% @jobs.each do |j| %>
+				<tr>
+					<td><%= truncate(j.title, length:12) %></td>
+					<td><%= j.job_type %></td>
+					<td><%= truncate(j.description, length:20) %></td>
+					<td><%= j.status %></td>
+					<td><%= j.updated_at.strftime("%d %b, %Y %H:%M") %></td>
+					<td><%= link_to "view", inquiry_path({job_id: j.id}) %></td>
+					<% if j.status == 'open' %>
+					<td><%= link_to "close", stat_chg_path({job_id: j.id}) %></td>
+					<% elsif j.status == 'close' %>
+					<td><%= link_to "open", stat_chg_path({job_id: j.id}) %></td>
+					<% end %>
+				</tr>
 				<% end %>
-			</tr>
+			</table>
+			<% else %>
+			<p class="head">No Jobs</p>
 			<% end %>
-		</table>
+		</div>
 	</div>
+	
+	<!-- <div class="row">
+		<h1>All Inquiries on jobs</h1>
+		<% if @inqs.length != 0%>
+			<% @inqs.each do |i| %>
+			<div class="inq">
+				<h3><%= i.job.title %></h3>
+				<h4><%= i.job.description %></h4>
+				<h5><%= i.message %></h5>
+				<h6><%= i.created_at.strftime("%d %b, %Y %H:%M") %></h6>
+			</div>
+			<% end %>
+		<% end %>
+	</div> -->
+
+
+	<div class="row">
+		<h1>All Inquiries on jobs</h1>
+		<div class="col-md-12">		
+			<% if @inqs.length != 0%>
+			<table class="table">
+				<tr class="head">
+					<td>Title</td>
+					<td>Description</td>
+					<td>Inquiry</td>
+					<td>Inq. Create at</td>
+				</tr>
+				<% @inqs.each do |i| %>
+				<tr>
+					<td><%= truncate(i.job.title, length:12) %></td>
+					<td><%= truncate(i.job.description, length:20) %></td>
+					<td><%= truncate(i.message, length:20) %></td>
+					<td><%= i.created_at.strftime("%d %b, %Y %H:%M") %></td>
+					<% end %>
+				</tr>
+			</table>
+			<% else %>
+			<p class="tbl_head">No Inquires</p>
+			<% end %>
+		</div>
+	</div>
+	
 </div>

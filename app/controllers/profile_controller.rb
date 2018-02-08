@@ -2,6 +2,7 @@ class ProfileController < ApplicationController
 	before_action :authenticate_company!
 	def latest_job
 		@jobs = Job.where(company_id: current_company.id).reverse
+		@inqs = Inquiry.joins(:job).where(company_id: current_company).order(:created_at)
 	end
 
 	def newjob
