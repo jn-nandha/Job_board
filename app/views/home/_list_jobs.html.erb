@@ -4,7 +4,7 @@
 		<% jobs.each do |j| %>
 			<% if current_company == nil%>
 				<div class="dashboard-jobs">
-					<div class="j-title"><%= j.title %></div>
+					<div class="j-title"><%= truncate(j.title, length:15) %></div>
 					<div class="j-type"><%= j.job_type %></div>
 					<div class="j-description"><%= truncate(j.description, length: 100) %></div>
 					<div class="j-city-time">From: <%= j.company.city %>, <%= j.created_at.strftime("%d %b, %Y %H:%M") %></div>
@@ -12,7 +12,7 @@
 			<% else %>
 				<%= link_to inquiry_new_path({job_id: j.id}) do %>
 				<div class="dashboard-jobs">
-					<div class="j-title"><%= j.title %></div>
+					<div class="j-title"><%= truncate(j.title, length:15) %></div>
 					<div class="j-type"><%= j.job_type %></div>
 					<div class="j-description"><%= truncate(j.description, length: 100) %></div>
 					<div class="j-city-time">From: <%= j.company.city %>, <%= j.created_at.strftime("%d %b, %Y %H:%M") %></div>
