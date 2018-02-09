@@ -1,4 +1,3 @@
-<h1>Latest Jobs</h1>
 <div class="row">
 	<% if jobs.count > 0 %>
 		<% jobs.each do |j| %>
@@ -7,7 +6,8 @@
 					<div class="j-title"><%= truncate(j.title, length:15) %></div>
 					<div class="j-type"><%= j.job_type %></div>
 					<div class="j-description"><%= truncate(j.description, length: 100) %></div>
-					<div class="j-city-time">From: <%= j.company.city %>, <%= j.created_at.strftime("%d %b, %Y %H:%M") %></div>
+					<div class="j-city"><%= j.company.city %></div>
+					<div class="j-time"><%= j.created_at.strftime("%d %b, %Y %H:%M") %></div>
 				</div>
 			<% else %>
 				<%= link_to inquiry_new_path({job_id: j.id}) do %>
@@ -15,7 +15,8 @@
 					<div class="j-title"><%= truncate(j.title, length:15) %></div>
 					<div class="j-type"><%= j.job_type %></div>
 					<div class="j-description"><%= truncate(j.description, length: 100) %></div>
-					<div class="j-city-time">From: <%= j.company.city %>, <%= j.created_at.strftime("%d %b, %Y %H:%M") %></div>
+					<div class="j-city"><%= j.company.city %></div>
+					<div class="j-time"><%= j.created_at.strftime("%d %b, %Y %H:%M") %></div>
 				</div>
 				<% end %>
 			<% end %>
@@ -23,37 +24,4 @@
 	<% else %>
 		<h1>No Jobs Found</h1>
 	<% end %>
-</div>
-
-<div class="row">
-	<table class="table">
-		<tr class="head">
-			<td>Title</td>
-			<td>Type</td>
-			<td>Description</td>
-			<td>City</td>
-			<td>Created Time</td>
-			<td>Inquire</td>
-		</tr>
-		<% if jobs.count > 0 %>
-		<% jobs.each do |j| %>
-		<tr>
-			<td><%= truncate(j.title, length:12) %></td>
-			<td><%= j.job_type %></td>
-			<td><%= truncate(j.description, length:20) %></td>
-			<td><%= j.company.city %></td>
-			<td><%= j.created_at.strftime("%d %b, %Y %H:%M") %></td>
-			<% if current_company == nil %>
-			<td><%= link_to "inquire", inquiry_new_path({job_id: j.id}) %></td>
-			<% elsif j.company_id != current_company.id%>
-			<td><%= link_to "inquire", inquiry_new_path({job_id: j.id}) %></td>
-			<% else %>
-			<td>------</td>
-			<% end %>
-		</tr>
-		<% end %>
-		<% else %>
-		<h3>No Jobs Found</h3>
-		<% end %>
-	</table>
 </div>

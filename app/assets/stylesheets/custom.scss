@@ -61,10 +61,17 @@ table
   }
   .j-description
   {
-    height: 180px;
+    padding-top: 3px;
+    height: 165px;
     font-size: 20px;
   }
-  .j-city-time
+  .j-city
+  {
+    height: 15px;
+    font-size: 10px;
+    text-align: right;
+  }
+  .j-time
   {
     height: 15px;
     font-size: 10px;

@@ -12,7 +12,12 @@
 			<% end %>	
 		</div>	
 	</div>
-	<div class="col-md-10 side-right">
-		<%= render partial: 'home/list_jobs', locals: { jobs: @jobs} %>	
+	<div class="col-md-10">
+		<div class="row">
+			<h1>Latest Jobs</h1>
+		</div>
+		<div class="side-right">
+			<%= render partial: 'home/list_jobs', locals: { jobs: @jobs} %>	
+		</div>
 	</div>
 </div>
